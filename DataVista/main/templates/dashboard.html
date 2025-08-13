@@ -1,0 +1,142 @@
+{% extends 'body.html' %}
+{% load static %}
+
+{% block title %}Dashboard - DataVista{% endblock %}
+
+{% block content %}
+<style>
+  /* Overall container with dark background */
+  .dashboard-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    background-color: #111827; /* dark navy/gray */
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e5e7eb; /* light gray text */
+  }
+
+  h1 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2.6rem;
+    margin-bottom: 30px;
+    letter-spacing: 0.03em;
+  }
+
+  h2 {
+    color: #9ca3af;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+
+  /* Data preview and summary boxes */
+  .table-container {
+    background-color: #1f2937; /* darker card background */
+    padding: 20px 25px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    box-shadow: inset 0 0 15px rgba(255,255,255,0.03);
+  }
+
+  /* Styling for the HTML tables inside */
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #d1d5db;
+    font-size: 0.9rem;
+  }
+  .table-container th, 
+  .table-container td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+  }
+  .table-container th {
+    background-color: #374151;
+    font-weight: 600;
+  }
+  .table-container tr:hover {
+    background-color: #374151;
+  }
+
+  /* Section for the wave plot */
+  .plot-section {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    padding: 30px 35px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 25px rgba(255,255,255,0.06);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .plot-section:hover {
+    /* Removed the bright green box-shadow */
+    box-shadow: inset 0 0 25px rgba(255,255,255,0.1);
+  }
+
+  .plot-section h2 {
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #9ca3af; /* changed from bright lime to muted gray */
+  }
+
+  img.plot-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.5); /* removed green shadow */
+    border: 2px solid #374151; /* changed from bright green border */
+    filter: none; /* removed drop-shadow */
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  img.plot-image:hover {
+    filter: none;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+  }
+
+  p.no-data {
+    color: #6b7280;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+
+  /* Fade-in animation for the plot image */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+
+  <h2>Data Preview</h2>
+  <div class="table-container">
+    {{ preview|safe }}
+  </div>
+
+  <h2>Summary Statistics</h2>
+  <div class="table-container">
+    {{ summary|safe }}
+  </div>
+
+  <div class="plot-section">
+    {% if plot_url %}
+      <h2>Wave Plot</h2>
+      <img src="{{ plot_url }}" alt="Wave plot" class="plot-image">
+    {% else %}
+      <p class="no-data">No numeric data found for plotting.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

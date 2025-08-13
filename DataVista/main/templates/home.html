@@ -1,0 +1,57 @@
+{% extends 'body.html' %}
+{% load static %}
+
+{% block title %}Home - DataVista{% endblock %}
+
+{% block content %}
+<style>
+  .home-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    font-family: Arial, sans-serif;
+    color: #1f2937; /* Dark gray */
+    text-align: center;
+  }
+
+  .home-container h1 {
+    font-size: 3.5rem;
+    color: #2563eb; /* Brand blue */
+    margin-bottom: 25px;
+  }
+
+  .home-container p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #374151;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #1d4ed8;
+  }
+</style>
+
+<div class="home-container">
+  <h1>Welcome to DataVista</h1>
+  <p>
+    DataVista is your powerful dashboard solution built with Django and Pandas.  
+    Easily visualize and analyze your data with an intuitive interface designed for quick insights and effortless management.
+  </p>
+  
+  <a href="{% url 'dashboard' %}" class="cta-button">Get Started</a>
+</div>
+{% endblock %}

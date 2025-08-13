@@ -1,0 +1,143 @@
+{% extends 'body.html' %}
+{% load static %}
+
+{% block title %}Upload CSV File - DataVista{% endblock %}
+
+{% block content %}
+<style>
+  .upload-container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 30px 20px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #1f2937;
+  }
+
+  .upload-container h1 {
+    margin-bottom: 10px;
+    color: #2563eb;
+  }
+
+  .upload-container p.description {
+    margin-bottom: 25px;
+    font-size: 1rem;
+    color: #4b5563;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .drag-drop-area {
+    border: 2px dashed #2563eb;
+    border-radius: 8px;
+    padding: 40px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #2563eb;
+    font-weight: 600;
+  }
+
+  .drag-drop-area:hover {
+    background-color: #e0e7ff;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  button {
+    background-color: #2563eb;
+    color: white;
+    font-weight: 700;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .messages {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  .messages .error {
+    color: #dc2626; /* red */
+    background-color: #fee2e2;
+    padding: 10px;
+    border-radius: 6px;
+  }
+</style>
+
+<div class="upload-container">
+  <h1>Upload CSV File</h1>
+  <p class="description">Only CSV files are allowed. You can drag and drop your file here or click to select.</p>
+
+  <div class="messages">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <form method="post" enctype="multipart/form-data" id="upload-form">
+    {% csrf_token %}
+    <label for="file-upload" class="drag-drop-area" tabindex="0" role="button" aria-label="Upload CSV file">
+      Drag & Drop file here or click to upload
+    </label>
+    <input type="file" id="file-upload" name="csv_file" accept=".csv" required>
+    <button type="submit">Upload</button>
+  </form>
+</div>
+
+<script>
+  const fileInput = document.getElementById('file-upload');
+  const dragDropArea = document.querySelector('.drag-drop-area');
+
+  // Clicking the drag-drop-area opens the file dialog
+  dragDropArea.addEventListener('click', () => {
+    fileInput.click();
+  });
+
+  // Keyboard accessibility: press Enter or Space to open file dialog
+  dragDropArea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  // Handle drag and drop events
+  dragDropArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dragDropArea.style.backgroundColor = '#e0e7ff';
+  });
+
+  dragDropArea.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    dragDropArea.style.backgroundColor = '';
+  });
+
+  dragDropArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dragDropArea.style.backgroundColor = '';
+    if(e.dataTransfer.files.length) {
+      fileInput.files = e.dataTransfer.files;
+    }
+  });
+</script>
+
+{% endblock %}

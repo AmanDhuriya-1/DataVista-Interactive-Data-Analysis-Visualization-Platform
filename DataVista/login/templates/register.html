@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register - DataVista</title>
+  <style>
+  body {
+    height: 100vh;
+  background-color: #0f172a;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+    .register-page * {
+      margin: 0;
+      padding: 0;
+    }
+    .register-page body,
+    .register-page html {
+      height: 100%;
+      margin: 0;
+      background-color: #0f172a;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .register-page .register-container {
+
+      width: 100%;
+      max-width: 400px;
+      padding: 30px;
+      background: #1e293b;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    .register-page .register-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .register-page .register-container form {
+      display: flex;
+      flex-direction: column;
+    }
+    .register-page .register-container label {
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .register-page .register-container input[type="text"],
+    .register-page .register-container input[type="email"],
+    .register-page .register-container input[type="password"] {
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      background-color: #475569;;
+      border: none;
+    }
+    .register-page .register-container button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .register-page .register-container button:hover {
+      background-color: #1d4ed8;
+    }
+    .register-page .register-container .login-link {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .register-page .register-container .login-link a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    .register-page .register-container .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="register-page">
+  <div class="register-container">
+    <h2>Register</h2>
+    <form method="post" action="/your-register-endpoint">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Choose a username" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+      <label for="password1">Password</label>
+      <input type="password" id="password1" name="password1" placeholder="Create a password" required />
+
+      <label for="password2">Confirm Password</label>
+      <input type="password" id="password2" name="password2" placeholder="Confirm your password" required />
+
+      <button type="submit">Register</button>
+    </form>
+    <div class="login-link">
+      Already have an account? <a href="/">Log in here</a>
+    </div>
+  </div>
+</body>
+</html>

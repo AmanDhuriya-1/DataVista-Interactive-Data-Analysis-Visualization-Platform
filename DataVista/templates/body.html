@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}DataVista{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+      /* Basic footer styling */
+      footer {
+        background-color: #1e293b;
+        color: #94a3b8;
+        text-align: center;
+        padding: 15px 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+    
+    {% block content %}
+    {% endblock %}
+    
+    <footer>
+        &copy; 2025 Aman Dhuriya. All rights reserved.
+    </footer>
+</body>
+</html>

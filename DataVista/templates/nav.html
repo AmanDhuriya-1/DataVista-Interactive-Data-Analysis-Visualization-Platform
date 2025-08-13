@@ -1,0 +1,51 @@
+<style>
+    nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #236adb;
+  padding: 15px 30px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+nav .logo {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 700;
+  cursor: default;
+  user-select: none;
+}
+
+nav .nav_main {
+  display: flex;
+  gap: 30px;
+}
+
+nav .nav_main a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+nav .nav_main a:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+</style>
+
+<nav>
+    <div class="logo">DataVista</div>
+    <div class="nav_main">
+        <a href="/home/">HOME</a>
+        <a href="/upload/">UPLOAD</a>
+        <a href="/dashboard/">DASHBOARDS</a>
+        <a href="/contact/">CONTACT</a>
+    </div>
+  
+</nav>
