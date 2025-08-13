@@ -9,6 +9,24 @@
 
 💡 Enhanced decision-making through clear, data-driven insights.
 
+# Setup & Run Instructions
+python -m venv myenv
+
+source myenv/bin/activate
+
+Copy the downloaded project files and paste them next to the myenv folder
+
+pip install -r requirements.txt
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py runserver 4467
+
+Important Note:
+Always run the server on port 4456 (or the port specified in your settings). Running on the default port 8000 may cause CSS and static files to not load properly.
+
 
 
 
